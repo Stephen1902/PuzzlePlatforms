@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "EnvironmentQuery/EnvQueryTypes.h"
 #include "GeometryCollection/GeometryCollectionSimulationCoreTypes.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEndZone::AEndZone()
@@ -45,6 +46,10 @@ void AEndZone::OnBeginOverlap(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 		{
 			for (int32 i = 0; i < PlayersInteracting.Num(); ++i)
 			{
+				if (APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), i))
+				{
+					PC->SetInputMode(FInputModeUIOnly());
+				}
 				if (PlayersInteracting[i]->HasAuthority())
 				{
 					// This is the server.  Call the end game function.

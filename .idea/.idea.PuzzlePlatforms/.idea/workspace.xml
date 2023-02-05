@@ -5,7 +5,10 @@
     <projectFile>Intermediate/ProjectFiles/UE5.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="" />
+    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +17,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Projects/Learning/GameDevTV/Multiplayer/PuzzlePlatforms/Source/PuzzlePlatforms/EndZone.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/MovingPlatform.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -194,6 +198,7 @@
       <workItem from="1675552251888" duration="18000" />
       <workItem from="1675552300324" duration="228000" />
       <workItem from="1675604676423" duration="541000" />
+      <workItem from="1675606518835" duration="597000" />
     </task>
     <servers />
   </component>
