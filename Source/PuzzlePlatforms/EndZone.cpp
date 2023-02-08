@@ -5,6 +5,8 @@
 #include "PuzzlePlatformsCharacter.h"
 #include "Components/BoxComponent.h"
 #include "EnvironmentQuery/EnvQueryTypes.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 #include "GeometryCollection/GeometryCollectionSimulationCoreTypes.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -46,14 +48,14 @@ void AEndZone::OnBeginOverlap(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 		{
 			for (int32 i = 0; i < PlayersInteracting.Num(); ++i)
 			{
-				if (APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), i))
-				{
-					PC->SetInputMode(FInputModeUIOnly());
-				}
+				// Tell the local player they have won the game
+				PlayersInteracting[i]->HasWonGame();
+				
 				if (PlayersInteracting[i]->HasAuthority())
 				{
 					// This is the server.  Call the end game function.
 					GEngine->AddOnScreenDebugMessage(0, 10.f, FColor::Red, TEXT("YOU WIN!"));
+					
 				}
 			}
 		}

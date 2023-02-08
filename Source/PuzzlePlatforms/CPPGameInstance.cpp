@@ -2,10 +2,36 @@
 
 
 #include "CPPGameInstance.h"
+#include "Blueprint/UserWidget.h"
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 {
-	
+	static ConstructorHelpers::FClassFinder<UUserWidget> MainMenuWidget(TEXT("/Game/Widgets/WBP_MainMenu"));
+	if (MainMenuWidget.Class != nullptr)
+	{
+		MenuWidget = MainMenuWidget.Class;
+	}
+}
+
+void UCPPGameInstance::DisplayMainMenu()
+{
+	// Check we successfully got the main menu class from the code in the initializer
+	if (!ensure(MenuWidget != nullptr)) return; 
+
+	if (UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuWidget))
+	{
+		Menu->AddToViewport();	
+		Menu->bIsFocusable = true;
+
+		APlayerController* PC = GetFirstLocalPlayerController();
+
+		// Check there is a valid Player Controller
+		if (!PC) { return; }
+
+		PC->SetInputMode(FInputModeUIOnly());
+		PC->SetShowMouseCursor(true);
+		
+	}
 }
 
 void UCPPGameInstance::Host()

@@ -17,6 +17,10 @@ class PUZZLEPLATFORMS_API UCPPGameInstance : public UGameInstance
 public:
 	UCPPGameInstance(const FObjectInitializer & ObjectInitializer);
 
+	// Function to show the main menu
+	UFUNCTION(BlueprintCallable, Category = "Main Menu")
+	void DisplayMainMenu();
+	
 	// Function for a host server
 	UFUNCTION(Exec)
 	void Host();
@@ -24,5 +28,7 @@ public:
 	// Function to join a host
 	UFUNCTION(Exec)
 	void Join(const FString& AddressIn);
-	
+
+private:
+	TSubclassOf<class UUserWidget> MenuWidget;
 };

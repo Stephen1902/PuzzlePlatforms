@@ -39,7 +39,8 @@ class APuzzlePlatformsCharacter : public ACharacter
 
 public:
 	APuzzlePlatformsCharacter();
-	
+
+	void HasWonGame() const;
 
 protected:
 
