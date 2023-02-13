@@ -2,7 +2,9 @@
 
 
 #include "CPPGameInstance.h"
+#include "W_MainMenu.h"
 #include "Blueprint/UserWidget.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -18,24 +20,24 @@ void UCPPGameInstance::DisplayMainMenu()
 	// Check we successfully got the main menu class from the code in the initializer
 	if (!ensure(MenuWidget != nullptr)) return; 
 
-	if (UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuWidget))
+	MainMenuRef = CreateWidget<UW_MainMenu>(this, MenuWidget);
+	if (MainMenuRef != nullptr)
 	{
-		Menu->AddToViewport();	
-		Menu->bIsFocusable = true;
+		// Add the game instance reference to the created menu
+		MainMenuRef->SetGameInstance(this);
 
-		APlayerController* PC = GetFirstLocalPlayerController();
-
-		// Check there is a valid Player Controller
-		if (!PC) { return; }
-
-		PC->SetInputMode(FInputModeUIOnly());
-		PC->SetShowMouseCursor(true);
-		
+		// Set up the menu in the menu class
+		MainMenuRef->SetupMenu();
 	}
 }
 
 void UCPPGameInstance::Host()
 {
+	if (MainMenuRef != nullptr)
+	{
+		
+	}
+	
 	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Green, TEXT("Hosting"));
 
 	UWorld* World = GetWorld();
@@ -55,4 +57,14 @@ void UCPPGameInstance::Join(const FString& AddressIn)
 
 	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Red, FString::Printf(TEXT("Joining %s"), *AddressIn));
 	PC->ClientTravel(AddressIn, TRAVEL_Absolute);
+}
+
+void UCPPGameInstance::QuitGame()
+{
+	APlayerController* PC = GetFirstLocalPlayerController();
+	const UWorld* World = GetWorld();
+
+	if (!PC || !World) { return; }
+
+	UKismetSystemLibrary::QuitGame(World, PC, EQuitPreference::Quit, false);
 }

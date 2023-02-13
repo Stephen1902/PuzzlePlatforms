@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "PuzzlePlatformsInterface.h"
 #include "CPPGameInstance.generated.h"
 
 /**
@@ -29,6 +30,13 @@ public:
 	UFUNCTION(Exec)
 	void Join(const FString& AddressIn);
 
+	// Function to quit the game
+	UFUNCTION(Exec)
+	void QuitGame();
+
 private:
-	TSubclassOf<class UUserWidget> MenuWidget;
+	TSubclassOf<UUserWidget> MenuWidget;
+
+	UPROPERTY()
+	class UW_MainMenu* MainMenuRef;
 };
