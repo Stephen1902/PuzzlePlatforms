@@ -7,10 +7,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Widgets/WBP_PauseMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/WBP_PauseMenu.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatformsCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatformsCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatformsCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatformsCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" afterDir="false" />
     </list>
@@ -39,13 +43,16 @@
     <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectId" id="2KxSLLSf13UI5gyhjIG5TxwpCH9" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -214,7 +221,9 @@
       <workItem from="1675892293861" duration="1662000" />
       <workItem from="1675971332328" duration="1812000" />
       <workItem from="1676113089930" duration="14062000" />
-      <workItem from="1676306920271" duration="294000" />
+      <workItem from="1676306920271" duration="2949000" />
+      <workItem from="1676323185123" duration="2668000" />
+      <workItem from="1676486366085" duration="2529000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -230,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675893963300</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Completed main menu and added new class for pause menu.">
+      <created>1676308046345</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1676308046345</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,10 +261,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Update after creating online repository." />
     <MESSAGE value="Created C++ Widget class, re-parented blueprint and added functionality to the code to bind them to the buttons on screen and created functions for when the buttons are clicked." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created C++ Widget class, re-parented blueprint and added functionality to the code to bind them to the buttons on screen and created functions for when the buttons are clicked." />
+    <MESSAGE value="Completed main menu and added new class for pause menu." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed main menu and added new class for pause menu." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

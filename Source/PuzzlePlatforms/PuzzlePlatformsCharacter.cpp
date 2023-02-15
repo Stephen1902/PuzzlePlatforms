@@ -10,7 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
-
+#include "CPPGameInstance.h"
 
 //////////////////////////////////////////////////////////////////////////
 // APuzzlePlatformsCharacter
@@ -50,6 +50,8 @@ APuzzlePlatformsCharacter::APuzzlePlatformsCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+
 }
 
 void APuzzlePlatformsCharacter::HasWonGame() const
@@ -76,11 +78,33 @@ void APuzzlePlatformsCharacter::BeginPlay()
 	}
 }
 
+void APuzzlePlatformsCharacter::OpenPauseMenu()
+{
+	if (!GameInstanceRef) { GetGameInstance(); }
+	// Check we successfully got the main menu class from the code in the initializer
+	if (!ensure(GameInstanceRef != nullptr)) return;
+
+	GameInstanceRef->OpenPauseMenu();
+	
+}
+
+void APuzzlePlatformsCharacter::GetGameInstance()
+{
+	// Get the world and check it is valid
+	const UWorld* World = GetWorld();
+	if (!ensure(World)) { return; }
+
+	// Populate the game instance reference
+	GameInstanceRef = Cast<UCPPGameInstance>(World->GetGameInstance());
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
 void APuzzlePlatformsCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
@@ -94,7 +118,11 @@ void APuzzlePlatformsCharacter::SetupPlayerInputComponent(class UInputComponent*
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APuzzlePlatformsCharacter::Look);
 
+		
 	}
+
+	// Open Pause Menu
+	InputComponent->BindAction("PauseMenuOpen", IE_Pressed, this, &APuzzlePlatformsCharacter::OpenPauseMenu);
 
 }
 

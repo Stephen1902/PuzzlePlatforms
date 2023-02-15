@@ -21,6 +21,9 @@ public:
 	// Function to show the main menu
 	UFUNCTION(BlueprintCallable, Category = "Main Menu")
 	void DisplayMainMenu();
+
+	UFUNCTION(BlueprintCallable, Category = "Main Menu")
+	void OpenPauseMenu();
 	
 	// Function for a host server
 	UFUNCTION(Exec)
@@ -39,4 +42,11 @@ private:
 
 	UPROPERTY()
 	class UW_MainMenu* MainMenuRef;
+
+	TSubclassOf<UUserWidget> PauseMenuWidget;
+	
+	UPROPERTY()
+	class UPauseMenu* PauseMenuRef;
+	
+
 };

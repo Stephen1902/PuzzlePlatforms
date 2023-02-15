@@ -18,7 +18,6 @@ public:
 	void SetGameInstance(class UCPPGameInstance* GameInstanceIn);
 
 	void SetupMenu();
-	void RemoveMenu();
 	
 protected:
 	virtual bool Initialize() override;

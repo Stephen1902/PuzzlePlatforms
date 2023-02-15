@@ -7,7 +7,6 @@
 #include "InputActionValue.h"
 #include "PuzzlePlatformsCharacter.generated.h"
 
-
 UCLASS(config=Game)
 class APuzzlePlatformsCharacter : public ACharacter
 {
@@ -50,18 +49,25 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 			
-
-protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	// To add mapping context
-	virtual void BeginPlay();
+	virtual void BeginPlay() override;
 
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+private:
+	void OpenPauseMenu();
+	void GetGameInstance();
+	
+	UPROPERTY()
+	class UCPPGameInstance* GameInstanceRef;
+
+	
 };
 

@@ -7,7 +7,6 @@
 #include "CPPGameInstance.h"
 #include "Components/EditableText.h"
 #include "Components/WidgetSwitcher.h"
-#include "Components/EditableTextBox.h"
 #include "Kismet/GameplayStatics.h"
 
 void UW_MainMenu::SetGameInstance(UCPPGameInstance* GameInstanceIn)
@@ -35,11 +34,6 @@ void UW_MainMenu::SetupMenu()
 		UE_LOG(LogTemp, Warning, TEXT("Game instance is not valid on Main Menu"));
 	}
 
-}
-
-void UW_MainMenu::RemoveMenu()
-{
-	
 }
 
 bool UW_MainMenu::Initialize()
@@ -183,8 +177,6 @@ void UW_MainMenu::QuitGameNoClicked()
 
 void UW_MainMenu::QuitButtonClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Quit Button Clicked"));
-
 	if (WidgetSwitcher)
 	{
 		WidgetSwitcher->SetActiveWidget(QuitMenu);

@@ -5,6 +5,7 @@
 #include "W_MainMenu.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "PauseMenu.h"
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -12,6 +13,13 @@ UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 	if (MainMenuWidget.Class != nullptr)
 	{
 		MenuWidget = MainMenuWidget.Class;
+	}
+
+	// Get a reference to the pause menu
+	static ConstructorHelpers::FClassFinder<UUserWidget> PauseMenuBP(TEXT("/Game/Widgets/WBP_PauseMenu"));
+	if (PauseMenuBP.Class != nullptr)
+	{
+		PauseMenuWidget = PauseMenuBP.Class;
 	}
 }
 
@@ -28,6 +36,25 @@ void UCPPGameInstance::DisplayMainMenu()
 
 		// Set up the menu in the menu class
 		MainMenuRef->SetupMenu();
+	}
+}
+
+void UCPPGameInstance::OpenPauseMenu()
+{
+	// Check whether the pause menu has been created before
+	if (PauseMenuRef == nullptr)
+	{
+		PauseMenuRef = CreateWidget<UPauseMenu>(this, PauseMenuWidget);
+	}
+	
+	// Get the world and check it exists
+	const UWorld* World = GetWorld();
+	if (!World) { return; }
+
+	// Get the current map name.  If not the main menu, open the pause menu 
+	if (World->GetMapName() != "MainMenu")
+	{
+		PauseMenuRef->OpenPauseMenu(this);
 	}
 }
 
