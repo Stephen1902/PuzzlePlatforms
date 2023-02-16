@@ -33,6 +33,12 @@ public:
 	UFUNCTION(Exec)
 	void Join(const FString& AddressIn);
 
+	UFUNCTION(Exec)
+	void LeaveHost();
+
+	UFUNCTION(Exec)
+	void LeaveJoin();
+	
 	// Function to quit the game
 	UFUNCTION(Exec)
 	void QuitGame();

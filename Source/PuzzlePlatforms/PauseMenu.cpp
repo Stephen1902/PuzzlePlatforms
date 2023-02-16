@@ -30,6 +30,20 @@ void UPauseMenu::OpenPauseMenu(UCPPGameInstance* GameInstanceIn)
 
 void UPauseMenu::ClosePauseMenu()
 {
+	// Check a valid player was given when called
+	if (GameInstanceRef)
+	{
+		// Get the player controller
+		APlayerController* PlayerController = GameInstanceRef->GetFirstLocalPlayerController();
+
+		// Check there is a valid Player Controller
+		if (!PlayerController) { return; }
+
+		PlayerController->SetInputMode(FInputModeGameOnly());
+		PlayerController->SetShowMouseCursor(false);
+
+		this->RemoveFromParent();	
+	}
 }
 
 bool UPauseMenu::Initialize()
@@ -83,7 +97,6 @@ bool UPauseMenu::Initialize()
 	}
 
 	return Success;
-	
 }
 
 void UPauseMenu::QuitButtonClicked()
@@ -93,7 +106,7 @@ void UPauseMenu::QuitButtonClicked()
 
 void UPauseMenu::BackButtonClicked()
 {
-	
+	ClosePauseMenu();
 }
 
 void UPauseMenu::QuitDesktopClicked()
@@ -106,6 +119,10 @@ void UPauseMenu::QuitDesktopClicked()
 
 void UPauseMenu::QuitMainMenuClicked()
 {
+	if (GameInstanceRef)
+	{
+		GameInstanceRef->LeaveJoin();
+	}
 }
 
 void UPauseMenu::QuitCancelClicked()
