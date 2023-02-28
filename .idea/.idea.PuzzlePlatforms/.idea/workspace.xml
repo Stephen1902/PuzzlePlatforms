@@ -5,10 +5,11 @@
     <projectFile>Intermediate/ProjectFiles/UE5.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="Created new SessionInfo Widget to automatically display available sessions.&#10;&#10;Altered implementation to allow for searching of sessions to automatically join, instead of typing in an IP Address.">
+    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="Completed the automatic server join.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PuzzlePlatforms.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/PuzzlePlatforms.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatforms.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatforms.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +21,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Projects/Learning/GameDevTV/Multiplayer/S03_SteamMultiplayer/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.h" root0="FORCE_HIGHLIGHTING" />
@@ -227,7 +229,7 @@
       <workItem from="1677188619731" duration="735000" />
       <workItem from="1677251678179" duration="632000" />
       <workItem from="1677409896700" duration="1999000" />
-      <workItem from="1677496016069" duration="15114000" />
+      <workItem from="1677496016069" duration="18126000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -271,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677572822741</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completed the automatic server join.">
+      <created>1677604022558</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677604022558</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,7 +303,8 @@
     <MESSAGE value="Added basic functionality to the pause menu.  Moved it from the player class to the Game Instance so that all widgets are controlled from one place." />
     <MESSAGE value="Added functionality to close menu and return to the main menu.&#10;&#10;End of module commit." />
     <MESSAGE value="Created new SessionInfo Widget to automatically display available sessions.&#10;&#10;Altered implementation to allow for searching of sessions to automatically join, instead of typing in an IP Address." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new SessionInfo Widget to automatically display available sessions.&#10;&#10;Altered implementation to allow for searching of sessions to automatically join, instead of typing in an IP Address." />
+    <MESSAGE value="Completed the automatic server join." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the automatic server join." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
