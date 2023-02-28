@@ -40,6 +40,7 @@ void UCPPGameInstance::Init()
 			SessionInterface->OnCreateSessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnSessionCreated);
 			SessionInterface->OnDestroySessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnSessionDestroyed);
 			SessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UCPPGameInstance::FindSessionsComplete);
+			SessionInterface->OnJoinSessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnJoinSessionComplete);
 			
 			SessionSearch = MakeShareable(new FOnlineSessionSearch());
 			if (SessionSearch.IsValid())
@@ -109,11 +110,10 @@ void UCPPGameInstance::Join(uint32 SessionRowIndex)
 {
 	APlayerController* PC = GetFirstLocalPlayerController();
 
-	// Check there is a valid Player Controller
-	if (!PC) { return; }
+	// Check there is a valid Player Controller and a valid session interface and valid session search
+	if (!PC || !SessionInterface.IsValid() || !SessionSearch.IsValid()) { return; }
 
-	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Red, FString::Printf(TEXT("Joining %s"), *AddressIn));
-	PC->ClientTravel(AddressIn, TRAVEL_Absolute);
+	SessionInterface->JoinSession(0, SESSION_NAME, SessionSearch->SearchResults[SessionRowIndex]);
 }
 
 void UCPPGameInstance::LeaveJoin()
@@ -199,6 +199,21 @@ void UCPPGameInstance::FindSessionsComplete(bool bSearchCompleteSuccessfully)
 			UE_LOG(LogTemp, Warning, TEXT("No valid sessions found"));
 		}
 */
+	}
+}
+
+void UCPPGameInstance::OnJoinSessionComplete(FName SessionIn, EOnJoinSessionCompleteResult::Type SessionCompleteResult)
+{
+	// Get the first (local) player controller
+	APlayerController* PC = GetFirstLocalPlayerController();
+	// Check there is a valid Player Controller
+	if (!PC) { return; }
+	// We need a string for Travel info.  This is an OUT parameter inside GetResolvedConnectString
+	FString TravelURL;
+	
+	if (SessionInterface->GetResolvedConnectString(SessionIn, TravelURL))
+	{
+		PC->ClientTravel(TravelURL, ETravelType::TRAVEL_Absolute);
 	}
 }
 

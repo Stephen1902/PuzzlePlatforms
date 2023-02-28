@@ -67,6 +67,9 @@ private:
 	// Function to call when the game has finished searching for sessions to join
 	void FindSessionsComplete(bool bSearchCompleteSuccessfully);
 
+	// Function to call when join session is completed
+	void OnJoinSessionComplete(FName SessionIn, EOnJoinSessionCompleteResult::Type SessionCompleteResult);
+
 	void CreateSession();
 	
 	IOnlineSessionPtr SessionInterface;
