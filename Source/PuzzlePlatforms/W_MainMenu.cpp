@@ -7,7 +7,19 @@
 #include "CPPGameInstance.h"
 #include "Components/EditableText.h"
 #include "Components/WidgetSwitcher.h"
+#include "Components/ScrollBox.h"
 #include "Kismet/GameplayStatics.h"
+#include "W_SessionInfo.h"
+#include "Components/TextBlock.h"
+
+UW_MainMenu::UW_MainMenu(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
+{
+	static ConstructorHelpers::FClassFinder<UUserWidget> SessionInfoWidget(TEXT("/Game/Widgets/WBP_SessionInfo"));
+	if (SessionInfoWidget.Class != nullptr)
+	{
+		SessionInfoClass = SessionInfoWidget.Class;
+	}	
+}
 
 void UW_MainMenu::SetGameInstance(UCPPGameInstance* GameInstanceIn)
 {
@@ -36,6 +48,36 @@ void UW_MainMenu::SetupMenu()
 
 }
 
+void UW_MainMenu::UpdateSessionList(TArray<FOnlineSessionSearchResult> SessionSearchResultsIn)
+{
+	if (SessionSearchResultsIn.Num() > 0)
+	{
+		const FString SessionNumText = "Number of sessions found: " + FString::FromInt(SessionSearchResultsIn.Num());
+		tbSessionSearchInfo->SetText(FText::FromString(SessionNumText));
+
+		uint32 i = 0;
+		for (FOnlineSessionSearchResult& It: SessionSearchResultsIn)
+		{
+			UW_SessionInfo* WidgetToCreate = CreateWidget<UW_SessionInfo>(this, SessionInfoClass);
+			const FText TextToAdd = FText::FromString(It.GetSessionIdStr());
+			WidgetToCreate->SetSessionInfoText(TextToAdd);
+			WidgetToCreate->Setup(this, i);
+			++i;
+			sbSessionInfo->AddChild(WidgetToCreate);
+		}
+	}
+	else
+	{
+		tbSessionSearchInfo->SetText(FText::FromString("No Valid Sessions Found"));
+	}
+}
+
+void UW_MainMenu::SelectSessionIndex(uint32 IndexIn)
+{
+	SelectedSessionIndex = IndexIn;
+	UE_LOG(LogTemp, Warning, TEXT("SelectedSessionIndex is %d"), *SelectedSessionIndex);
+}
+
 bool UW_MainMenu::Initialize()
 {
 	bool Success = Super::Initialize();
@@ -44,6 +86,7 @@ bool UW_MainMenu::Initialize()
 	if (btnHOST)
 	{
 		btnHOST->OnClicked.AddDynamic(this, &UW_MainMenu::HostButtonClicked);
+		btnHOST->SetIsEnabled(true);
 	}
 	else
 	{
@@ -53,6 +96,7 @@ bool UW_MainMenu::Initialize()
 	if (btnJOIN)
 	{
 		btnJOIN->OnClicked.AddDynamic(this, &UW_MainMenu::JoinButtonClicked);
+		btnJOIN->SetIsEnabled(true);
 	}
 	else
 	{
@@ -68,6 +112,15 @@ bool UW_MainMenu::Initialize()
 		Success = false;
 	}
 
+	if (btnJoinServerRefresh)
+	{
+		btnJoinServerRefresh->OnClicked.AddDynamic(this, &UW_MainMenu::UW_MainMenu::JoinButtonRefreshClicked);	
+	}
+	else
+	{
+		Success = false;
+	}
+	
 	if (btnJoinServerOK)
 	{
 		btnJoinServerOK->OnClicked.AddDynamic(this, &UW_MainMenu::JoinButtonOKClicked);
@@ -104,7 +157,6 @@ bool UW_MainMenu::Initialize()
 		Success = false;
 	}
 	
-	
 	return Success;
 }
 
@@ -129,26 +181,58 @@ void UW_MainMenu::HostButtonClicked()
 
 	if (GameInstanceRef != nullptr)
 	{
+		btnHOST->SetIsEnabled(false);
+		btnJOIN->SetIsEnabled(false);
 		GameInstanceRef->Host();
 	}
 }
 
 void UW_MainMenu::JoinButtonClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Join Button Clicked"));
-
+	// Check that the widget switch is valid and move to it
 	if (WidgetSwitcher != nullptr)
 	{
 		WidgetSwitcher->SetActiveWidget(LoginMenu);
+
+		// Check that the Session Info scroll box and Session Info widget are valid
+		if (sbSessionInfo && SessionInfoClass && GameInstanceRef)
+		{
+			// Check if there are any old sessions found and clear them
+			if (sbSessionInfo->HasAnyChildren())
+			{
+				sbSessionInfo->ClearChildren();
+			}
+
+			// Update the session list
+			JoinButtonRefreshClicked();
+		}
+	}
+}
+
+void UW_MainMenu::JoinButtonRefreshClicked()
+{
+	if (GameInstanceRef)
+	{
+		sbSessionInfo->ClearChildren();
+		tbSessionSearchInfo->SetText(FText::FromString("Searching for sessions...."));
+		GameInstanceRef->FindGameSessions();
 	}
 }
 
 void UW_MainMenu::JoinButtonOKClicked()
 {
-	if (tbAddressEntry && GameInstanceRef)
+	if (SelectedSessionIndex.IsSet() && GameInstanceRef != nullptr)
 	{
-		GameInstanceRef->Join(tbAddressEntry->GetText().ToString());
+		UE_LOG(LogTemp, Warning, TEXT("Index set to %d"), SelectedSessionIndex.GetValue());
+		GameInstanceRef->Join(SelectedSessionIndex.GetValue());
 	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Selected Sessions Index or Game Instance is not set in main menu"));
+	}
+	
+	
+
 }
 
 void UW_MainMenu::JoinButtonCancelClicked()

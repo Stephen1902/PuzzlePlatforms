@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "PuzzlePlatformsInterface.h"
+#include "Interfaces/OnlineSessionInterface.h"
+#include "OnlineSessionSettings.h"
 #include "CPPGameInstance.generated.h"
 
 /**
@@ -17,6 +18,8 @@ class PUZZLEPLATFORMS_API UCPPGameInstance : public UGameInstance
 
 public:
 	UCPPGameInstance(const FObjectInitializer & ObjectInitializer);
+
+	virtual void Init() override;
 
 	// Function to show the main menu
 	UFUNCTION(BlueprintCallable, Category = "Main Menu")
@@ -31,11 +34,8 @@ public:
 
 	// Function to join a host
 	UFUNCTION(Exec)
-	void Join(const FString& AddressIn);
-
-	UFUNCTION(Exec)
-	void LeaveHost();
-
+	void Join(uint32 SessionRowIndex);
+	
 	UFUNCTION(Exec)
 	void LeaveJoin();
 	
@@ -43,16 +43,35 @@ public:
 	UFUNCTION(Exec)
 	void QuitGame();
 
+	TArray<FOnlineSessionSearchResult> GetSessionResults();
+
+	void FindGameSessions() const;
+
 private:
 	TSubclassOf<UUserWidget> MenuWidget;
 
 	UPROPERTY()
-	class UW_MainMenu* MainMenuRef;
+	TObjectPtr<class UW_MainMenu> MainMenuRef;
 
 	TSubclassOf<UUserWidget> PauseMenuWidget;
 	
 	UPROPERTY()
-	class UPauseMenu* PauseMenuRef;
-	
+	TObjectPtr<class UPauseMenu> PauseMenuRef;
 
+	// Function to call when an online session has successfully be created
+	void OnSessionCreated(FName SessionIn, bool bSessionCreatedSuccessfully);
+
+	// Function to call when an online session has successfully been destroyed
+	void OnSessionDestroyed(FName SessionIn, bool bSessionDestroyedSuccessfully);
+
+	// Function to call when the game has finished searching for sessions to join
+	void FindSessionsComplete(bool bSearchCompleteSuccessfully);
+
+	void CreateSession();
+	
+	IOnlineSessionPtr SessionInterface;
+	TSharedPtr<FOnlineSessionSearch> SessionSearch;
+	TArray<FOnlineSessionSearchResult> SessionResults;
+	
+	
 };

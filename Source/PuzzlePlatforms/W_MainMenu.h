@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "OnlineSessionSettings.h"
 #include "W_MainMenu.generated.h"
 
 /**
@@ -14,10 +15,15 @@ class PUZZLEPLATFORMS_API UW_MainMenu : public UUserWidget
 {
 	GENERATED_BODY()
 
+	UW_MainMenu(const FObjectInitializer& ObjectInitializer);
+
 public:
 	void SetGameInstance(class UCPPGameInstance* GameInstanceIn);
 
 	void SetupMenu();
+	void UpdateSessionList(TArray<FOnlineSessionSearchResult> SessionSearchResultsIn);
+
+	void SelectSessionIndex(uint32 IndexIn);
 	
 protected:
 	virtual bool Initialize() override;
@@ -36,6 +42,15 @@ protected:
 
 	UPROPERTY(meta=(BindWidget))
 	UWidget* LoginMenu;
+
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<class UTextBlock> tbSessionSearchInfo;
+	
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<class UScrollBox> sbSessionInfo;
+	
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UButton> btnJoinServerRefresh;
 	
 	UPROPERTY(meta=(BindWidget))
 	UButton* btnJoinServerOK;
@@ -55,9 +70,6 @@ protected:
 	UPROPERTY(meta=(BindWidget))
 	class UWidgetSwitcher* WidgetSwitcher;
 
-	UPROPERTY(meta=(BindWidget))
-	class UEditableText* tbAddressEntry;
-
 	UFUNCTION()
 	virtual void NativeDestruct() override;
 
@@ -68,6 +80,9 @@ private:
 	UFUNCTION()
 	void JoinButtonClicked();
 
+	UFUNCTION()
+	void JoinButtonRefreshClicked();
+	
 	UFUNCTION()
 	void JoinButtonOKClicked();
 
@@ -85,4 +100,13 @@ private:
 
 	UPROPERTY()
 	UCPPGameInstance* GameInstanceRef;
+
+	UPROPERTY()
+	TObjectPtr<class UW_SessionInfo> SessionInfoRef;
+	
+	UPROPERTY()
+	TSubclassOf<UUserWidget> SessionInfoClass;
+
+	TOptional<uint32> SelectedSessionIndex;
+
 };

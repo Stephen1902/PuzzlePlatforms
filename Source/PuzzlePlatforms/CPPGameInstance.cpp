@@ -6,6 +6,9 @@
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "PauseMenu.h"
+#include "OnlineSubsystem.h"
+
+const static FName SESSION_NAME = TEXT("My Session"); 
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -21,6 +24,35 @@ UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 	{
 		PauseMenuWidget = PauseMenuBP.Class;
 	}
+}
+
+void UCPPGameInstance::Init()
+{
+	Super::Init();
+
+	if (const IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Online subsystem is %s"), *Subsystem->GetSubsystemName().ToString());
+		SessionInterface = Subsystem->GetSessionInterface();
+		if (SessionInterface.IsValid())
+		{
+			// Bind delegates
+			SessionInterface->OnCreateSessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnSessionCreated);
+			SessionInterface->OnDestroySessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnSessionDestroyed);
+			SessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UCPPGameInstance::FindSessionsComplete);
+			
+			SessionSearch = MakeShareable(new FOnlineSessionSearch());
+			if (SessionSearch.IsValid())
+			{
+				FindGameSessions();				
+			}
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Online susbystem is null"));
+	}
+
 }
 
 void UCPPGameInstance::DisplayMainMenu()
@@ -60,22 +92,20 @@ void UCPPGameInstance::OpenPauseMenu()
 
 void UCPPGameInstance::Host()
 {
-	if (MainMenuRef != nullptr)
+	if (SessionInterface.IsValid())
 	{
+		const FNamedOnlineSession* SessionNameInUse = SessionInterface->GetNamedSession(SESSION_NAME);
+		if (SessionNameInUse != nullptr)
+		{
+			SessionInterface->DestroySession(SESSION_NAME);
+		}
+
+		CreateSession();
 		
 	}
-	
-	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Green, TEXT("Hosting"));
-
-	UWorld* World = GetWorld();
-
-	// Check we got a valid world pointer
-	if (!World) { return; }
-
-	World->ServerTravel("/Game/ThirdPerson/Maps/DefaultMap?listen");
 }
 
-void UCPPGameInstance::Join(const FString& AddressIn)
+void UCPPGameInstance::Join(uint32 SessionRowIndex)
 {
 	APlayerController* PC = GetFirstLocalPlayerController();
 
@@ -84,11 +114,6 @@ void UCPPGameInstance::Join(const FString& AddressIn)
 
 	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Red, FString::Printf(TEXT("Joining %s"), *AddressIn));
 	PC->ClientTravel(AddressIn, TRAVEL_Absolute);
-}
-
-void UCPPGameInstance::LeaveHost()
-{
-	
 }
 
 void UCPPGameInstance::LeaveJoin()
@@ -112,4 +137,86 @@ void UCPPGameInstance::QuitGame()
 	if (!PC || !World) { return; }
 
 	UKismetSystemLibrary::QuitGame(World, PC, EQuitPreference::Quit, false);
+}
+
+TArray<FOnlineSessionSearchResult> UCPPGameInstance::GetSessionResults()
+{
+	return SessionResults;
+}
+
+void UCPPGameInstance::OnSessionCreated(FName SessionIn, bool bSessionCreatedSuccessfully)
+{
+	if (!bSessionCreatedSuccessfully)
+	{
+		return;
+	}
+		
+	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Green, TEXT("Hosting"));
+
+	UWorld* World = GetWorld();
+
+	// Check we got a valid world pointer
+	if (!World) { return; }
+
+	World->ServerTravel("/Game/ThirdPerson/Maps/DefaultMap?listen");
+}
+
+void UCPPGameInstance::OnSessionDestroyed(FName SessionIn, bool bSessionDestroyedSuccessfully)
+{
+	if (bSessionDestroyedSuccessfully)
+	{
+		CreateSession();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to destroy session"));
+	}
+}
+
+void UCPPGameInstance::FindSessionsComplete(bool bSearchCompleteSuccessfully)
+{
+	if (bSearchCompleteSuccessfully && MainMenuRef)
+	{
+		// Check whether any existing sessions are in the array, clear if they are
+		if (SessionResults.Num() > 0) { SessionResults.Empty(); }
+
+		// Add found results to the array
+		SessionResults = SessionSearch->SearchResults;
+		UE_LOG(LogTemp, Warning, TEXT("Sessions found: %i"), SessionResults.Num());
+		// Populate the list in the main menu widget
+		MainMenuRef->UpdateSessionList(SessionResults);
+
+/*  For testing purposes only
+		if (SessionResults.Num() > 0)
+		{
+			for (auto& It : SessionResults)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Found Session: %s"), *It.GetSessionIdStr());
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("No valid sessions found"));
+		}
+*/
+	}
+}
+
+void UCPPGameInstance::CreateSession()
+{
+	if (SessionInterface.IsValid())
+	{
+		FOnlineSessionSettings SessionSettings;
+		SessionSettings.bIsLANMatch = true;
+		SessionSettings.NumPublicConnections = 2;
+		SessionSettings.bShouldAdvertise = true;
+		SessionInterface->CreateSession(0, SESSION_NAME, SessionSettings);
+	}
+}
+
+
+void UCPPGameInstance::FindGameSessions() const
+{
+	SessionSearch->bIsLanQuery = true;
+	SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
 }

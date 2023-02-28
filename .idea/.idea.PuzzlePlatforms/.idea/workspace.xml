@@ -6,10 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Widgets/WBP_SessionInfo.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_SessionInfo.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_SessionInfo.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatforms.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatforms.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +40,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2KxSLLSf13UI5gyhjIG5TxwpCH9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -217,7 +224,18 @@
       <workItem from="1676306920271" duration="2949000" />
       <workItem from="1676323185123" duration="2668000" />
       <workItem from="1676486366085" duration="2854000" />
-      <workItem from="1676564256782" duration="3067000" />
+      <workItem from="1676564256782" duration="3720000" />
+      <workItem from="1676669143817" duration="1248000" />
+      <workItem from="1676736217993" duration="3063000" />
+      <workItem from="1676808130733" duration="6679000" />
+      <workItem from="1676920033846" duration="4534000" />
+      <workItem from="1676967250993" duration="10518000" />
+      <workItem from="1677081128794" duration="3144000" />
+      <workItem from="1677176720142" duration="973000" />
+      <workItem from="1677188619731" duration="735000" />
+      <workItem from="1677251678179" duration="632000" />
+      <workItem from="1677409896700" duration="1999000" />
+      <workItem from="1677496016069" duration="13558000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -247,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676489213038</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added functionality to close menu and return to the main menu.&#10;&#10;End of module commit.">
+      <created>1676567792170</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676567792171</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,7 +293,8 @@
     <MESSAGE value="Created C++ Widget class, re-parented blueprint and added functionality to the code to bind them to the buttons on screen and created functions for when the buttons are clicked." />
     <MESSAGE value="Completed main menu and added new class for pause menu." />
     <MESSAGE value="Added basic functionality to the pause menu.  Moved it from the player class to the Game Instance so that all widgets are controlled from one place." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic functionality to the pause menu.  Moved it from the player class to the Game Instance so that all widgets are controlled from one place." />
+    <MESSAGE value="Added functionality to close menu and return to the main menu.&#10;&#10;End of module commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to close menu and return to the main menu.&#10;&#10;End of module commit." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
