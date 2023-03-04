@@ -41,7 +41,7 @@ void UCPPGameInstance::Init()
 			SessionInterface->OnDestroySessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnSessionDestroyed);
 			SessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UCPPGameInstance::FindSessionsComplete);
 			SessionInterface->OnJoinSessionCompleteDelegates.AddUObject(this, &UCPPGameInstance::OnJoinSessionComplete);
-			
+
 			SessionSearch = MakeShareable(new FOnlineSessionSearch());
 			if (SessionSearch.IsValid())
 			{
@@ -222,9 +222,12 @@ void UCPPGameInstance::CreateSession()
 	if (SessionInterface.IsValid())
 	{
 		FOnlineSessionSettings SessionSettings;
-		SessionSettings.bIsLANMatch = true;
+		SessionSettings.bIsLANMatch = false;
 		SessionSettings.NumPublicConnections = 2;
 		SessionSettings.bShouldAdvertise = true;
+		SessionSettings.bUsesPresence = true;
+		SessionSettings.bUseLobbiesIfAvailable = true;
+		
 		SessionInterface->CreateSession(0, SESSION_NAME, SessionSettings);
 	}
 }
@@ -232,6 +235,11 @@ void UCPPGameInstance::CreateSession()
 
 void UCPPGameInstance::FindGameSessions() const
 {
-	SessionSearch->bIsLanQuery = true;
-	SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
+	if (SessionInterface.IsValid())
+	{
+		//SessionSearch->bIsLanQuery = false;
+		SessionSearch->MaxSearchResults = 100;
+		SessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+		SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
+	}
 }

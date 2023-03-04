@@ -23,20 +23,38 @@ protected:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<class UButton> btnSelectSession;
 
+	// Default colour to display when a button is not hovered or clicked
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Set up")
+	FLinearColor DefaultColour;
+
+	// Colour to display when button is hovered over but not clicked
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Set up")
+	FLinearColor HoveredColour;
+
+	// Colour to display when button has been clicked
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Set up")
+	FLinearColor SelectedColour;
+
 public:
 	void SetSessionInfoText(FText TextToDisplay) const;
 
 	void Setup(class UW_MainMenu* Parent, uint32 Index);
 
+	void SetColourToDefault();
+
 private:
 	UFUNCTION()
 	void BtnSelectSessionClicked();
 
+	UFUNCTION()
+	void BtnSelectSessionHovered();
+
+	UFUNCTION()
+	void BtnSelectSessionUnhovered();
+
 	TObjectPtr<UW_MainMenu> MainMenuRef;
 
 	uint32 CurrentSessionInfoIndex;
-
 	
-	
-	
+	bool bIsSelectedSession = false;
 };

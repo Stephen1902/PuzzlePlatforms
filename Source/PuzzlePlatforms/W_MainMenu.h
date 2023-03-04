@@ -22,7 +22,7 @@ public:
 
 	void SetupMenu();
 	void UpdateSessionList(TArray<FOnlineSessionSearchResult> SessionSearchResultsIn);
-
+	
 	void SelectSessionIndex(uint32 IndexIn);
 	
 protected:
@@ -107,6 +107,6 @@ private:
 	UPROPERTY()
 	TSubclassOf<UUserWidget> SessionInfoClass;
 
-	TOptional<uint32> SelectedSessionIndex;
+	TOptional<uint32> SessionIndexSelected;
 
 };

@@ -12,15 +12,17 @@ bool UW_SessionInfo::Initialize()
 	bool bSuccess = Super::Initialize();
 	if (bSuccess == false) { return false;}
 
-	if (btnSelectSession)
+	if (btnSelectSession && tbSessionInfo)
 	{
 		btnSelectSession->OnClicked.AddDynamic(this, &UW_SessionInfo::BtnSelectSessionClicked);
+		btnSelectSession->OnHovered.AddDynamic(this, &UW_SessionInfo::BtnSelectSessionHovered);
+		btnSelectSession->OnUnhovered.AddDynamic(this, &UW_SessionInfo::BtnSelectSessionUnhovered);
 	}
 	else
 	{
 		bSuccess = false;
 	}
-
+	
 	return bSuccess;
 }
 
@@ -38,10 +40,41 @@ void UW_SessionInfo::Setup(UW_MainMenu* Parent, uint32 Index)
 	CurrentSessionInfoIndex = Index;
 }
 
+void UW_SessionInfo::SetColourToDefault()
+{
+	if (tbSessionInfo)
+	{
+		tbSessionInfo->SetColorAndOpacity(DefaultColour);
+		bIsSelectedSession = false;
+	}
+}
+
 void UW_SessionInfo::BtnSelectSessionClicked()
 {
 	// Check we successfully got the main menu class from the code in the Setup function
 	if (!ensure(MainMenuRef != nullptr)) return;
 
 	MainMenuRef->SelectSessionIndex(CurrentSessionInfoIndex);
+
+	if (tbSessionInfo)
+	{
+		tbSessionInfo->SetColorAndOpacity(SelectedColour);
+		bIsSelectedSession = true;
+	}
+}
+
+void UW_SessionInfo::BtnSelectSessionHovered()
+{
+	if (tbSessionInfo && !bIsSelectedSession)
+	{
+		tbSessionInfo->SetColorAndOpacity(HoveredColour);
+	}
+}
+
+void UW_SessionInfo::BtnSelectSessionUnhovered()
+{
+	if (tbSessionInfo && !bIsSelectedSession)
+	{
+		tbSessionInfo->SetColorAndOpacity(DefaultColour);
+	}
 }

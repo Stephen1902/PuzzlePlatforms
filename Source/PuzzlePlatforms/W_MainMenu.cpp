@@ -50,32 +50,63 @@ void UW_MainMenu::SetupMenu()
 
 void UW_MainMenu::UpdateSessionList(TArray<FOnlineSessionSearchResult> SessionSearchResultsIn)
 {
-	if (SessionSearchResultsIn.Num() > 0)
+//	if (SessionSearchResultsIn.Num() > 0)
 	{
-		const FString SessionNumText = "Number of sessions found: " + FString::FromInt(SessionSearchResultsIn.Num());
-		tbSessionSearchInfo->SetText(FText::FromString(SessionNumText));
+//		const FString SessionNumText = "Number of sessions found: " + FString::FromInt(SessionSearchResultsIn.Num());
+//		tbSessionSearchInfo->SetText(FText::FromString(SessionNumText));
 
 		uint32 i = 0;
-		for (FOnlineSessionSearchResult& It: SessionSearchResultsIn)
+//		for (FOnlineSessionSearchResult& It: SessionSearchResultsIn)
+		/* TESTING PURPOSES ONLY*/
+		for (int j = 0; j < 4; ++j)
 		{
 			UW_SessionInfo* WidgetToCreate = CreateWidget<UW_SessionInfo>(this, SessionInfoClass);
-			const FText TextToAdd = FText::FromString(It.GetSessionIdStr());
+			//			const FText TextToAdd = FText::FromString(It.GetSessionIdStr());
+			/* TESTING PURPOSES ONLY*/
+			const FString StringToAdd = "Test" + FString::FromInt(j);
+			const FText TextToAdd = FText::FromString(StringToAdd);
+			/* END OF TESTING */
 			WidgetToCreate->SetSessionInfoText(TextToAdd);
 			WidgetToCreate->Setup(this, i);
 			++i;
 			sbSessionInfo->AddChild(WidgetToCreate);
 		}
 	}
-	else
+/*	else
 	{
 		tbSessionSearchInfo->SetText(FText::FromString("No Valid Sessions Found"));
-	}
+	}   */
 }
 
 void UW_MainMenu::SelectSessionIndex(uint32 IndexIn)
 {
-	SelectedSessionIndex = IndexIn;
-	UE_LOG(LogTemp, Warning, TEXT("SelectedSessionIndex is %d"), *SelectedSessionIndex);
+	// Check that the value has been previously set, set it if not
+	if (!SessionIndexSelected.IsSet())
+	{
+		SessionIndexSelected = IndexIn;	
+	}
+	else
+	{
+		// Clear the colour from the previously selected IndexIn, only if there is a valid sbSessionInfo and it is different
+		if (sbSessionInfo && SessionIndexSelected.GetValue() != IndexIn)
+		{
+			TArray<UWidget*> SessionInfoChildren = sbSessionInfo->GetAllChildren();
+			if (UW_SessionInfo* WidgetInstance = Cast<UW_SessionInfo>(SessionInfoChildren[SessionIndexSelected.GetValue()]))
+			{
+				WidgetInstance->SetColourToDefault();
+			}
+
+			// Set the new session index
+			SessionIndexSelected = IndexIn;
+			UE_LOG(LogTemp, Warning, TEXT("SelectedSessionIndex is %d"), *SessionIndexSelected);
+		}
+
+		
+		
+	}
+		
+	
+	
 }
 
 bool UW_MainMenu::Initialize()
@@ -221,18 +252,15 @@ void UW_MainMenu::JoinButtonRefreshClicked()
 
 void UW_MainMenu::JoinButtonOKClicked()
 {
-	if (SelectedSessionIndex.IsSet() && GameInstanceRef != nullptr)
+	if (SessionIndexSelected.IsSet() && GameInstanceRef != nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Index set to %d"), SelectedSessionIndex.GetValue());
-		GameInstanceRef->Join(SelectedSessionIndex.GetValue());
+		UE_LOG(LogTemp, Warning, TEXT("Index set to %d"), SessionIndexSelected.GetValue());
+		GameInstanceRef->Join(SessionIndexSelected.GetValue());
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Selected Sessions Index or Game Instance is not set in main menu"));
 	}
-	
-	
-
 }
 
 void UW_MainMenu::JoinButtonCancelClicked()
