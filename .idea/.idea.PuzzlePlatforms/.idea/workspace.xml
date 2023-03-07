@@ -7,9 +7,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/WBP_MainMenu.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Widgets/WBP_SessionInfo.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/WBP_SessionInfo.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_SessionInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_SessionInfo.cpp" afterDir="false" />
@@ -25,6 +28,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Projects/Learning/GameDevTV/Multiplayer/S03_SteamMultiplayer/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.h" root0="FORCE_HIGHLIGHTING" />
@@ -234,7 +238,12 @@
       <workItem from="1677409896700" duration="1999000" />
       <workItem from="1677496016069" duration="18732000" />
       <workItem from="1677781287458" duration="1391000" />
-      <workItem from="1677966202933" duration="3735000" />
+      <workItem from="1677966202933" duration="3973000" />
+      <workItem from="1678015944528" duration="4718000" />
+      <workItem from="1678021199840" duration="775000" />
+      <workItem from="1678022229728" duration="269000" />
+      <workItem from="1678136683934" duration="1672000" />
+      <workItem from="1678205975308" duration="7721000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -292,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677617778252</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added functions to change colour when the buttons on the session info widgets are hovered, un-hovered and clicked on, adding checks so that if the same button is pressed, it will not repeat the code.">
+      <created>1677970144217</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677970144217</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,7 +333,8 @@
     <MESSAGE value="Created new SessionInfo Widget to automatically display available sessions.&#10;&#10;Altered implementation to allow for searching of sessions to automatically join, instead of typing in an IP Address." />
     <MESSAGE value="Completed the automatic server join." />
     <MESSAGE value="Added Steam Online Subsystem and relevant code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Steam Online Subsystem and relevant code" />
+    <MESSAGE value="Added functions to change colour when the buttons on the session info widgets are hovered, un-hovered and clicked on, adding checks so that if the same button is pressed, it will not repeat the code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functions to change colour when the buttons on the session info widgets are hovered, un-hovered and clicked on, adding checks so that if the same button is pressed, it will not repeat the code." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

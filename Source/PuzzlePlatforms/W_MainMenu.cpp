@@ -2,15 +2,15 @@
 
 
 #include "W_MainMenu.h"
-#include "Components/Button.h"
+#include "W_SessionInfo.h"
 #include "GameFramework/PlayerController.h"
 #include "CPPGameInstance.h"
-#include "Components/EditableText.h"
+#include "Kismet/GameplayStatics.h"
+#include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
 #include "Components/ScrollBox.h"
-#include "Kismet/GameplayStatics.h"
-#include "W_SessionInfo.h"
 #include "Components/TextBlock.h"
+#include "Components/EditableText.h"
 
 UW_MainMenu::UW_MainMenu(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
 {
@@ -48,34 +48,35 @@ void UW_MainMenu::SetupMenu()
 
 }
 
-void UW_MainMenu::UpdateSessionList(TArray<FOnlineSessionSearchResult> SessionSearchResultsIn)
+void UW_MainMenu::UpdateSessionList(TArray<FSessionInfoStruct> SessionSearchResultsIn)
 {
-//	if (SessionSearchResultsIn.Num() > 0)
+	if (SessionSearchResultsIn.Num() > 0)
 	{
-//		const FString SessionNumText = "Number of sessions found: " + FString::FromInt(SessionSearchResultsIn.Num());
-//		tbSessionSearchInfo->SetText(FText::FromString(SessionNumText));
+		const FString SessionNumText = "Number of sessions found: " + FString::FromInt(SessionSearchResultsIn.Num());
+		tbSessionSearchInfo->SetText(FText::FromString(SessionNumText));
 
 		uint32 i = 0;
-//		for (FOnlineSessionSearchResult& It: SessionSearchResultsIn)
-		/* TESTING PURPOSES ONLY*/
+		for (const FSessionInfoStruct& SessionData : SessionSearchResultsIn)
+		/* TESTING PURPOSES ONLY
 		for (int j = 0; j < 4; ++j)
+		*/
 		{
 			UW_SessionInfo* WidgetToCreate = CreateWidget<UW_SessionInfo>(this, SessionInfoClass);
-			//			const FText TextToAdd = FText::FromString(It.GetSessionIdStr());
-			/* TESTING PURPOSES ONLY*/
+			const FText TextToAdd = FText::FromString(SessionData.SessionName);
+			/* TESTING PURPOSES ONLY
 			const FString StringToAdd = "Test" + FString::FromInt(j);
 			const FText TextToAdd = FText::FromString(StringToAdd);
-			/* END OF TESTING */
-			WidgetToCreate->SetSessionInfoText(TextToAdd);
+			END OF TESTING */
+			WidgetToCreate->SetSessionInfoText(SessionData);
 			WidgetToCreate->Setup(this, i);
 			++i;
 			sbSessionInfo->AddChild(WidgetToCreate);
 		}
 	}
-/*	else
+	else
 	{
 		tbSessionSearchInfo->SetText(FText::FromString("No Valid Sessions Found"));
-	}   */
+	}   
 }
 
 void UW_MainMenu::SelectSessionIndex(uint32 IndexIn)
@@ -143,6 +144,21 @@ bool UW_MainMenu::Initialize()
 		Success = false;
 	}
 
+	if (tbHostNameEntry)
+	{
+		tbHostNameEntry->OnTextChanged.AddDynamic(this, &UW_MainMenu::OnHostTextChanged);
+	}
+
+	if (btnHostNameOK)
+	{
+		btnHostNameOK->OnClicked.AddDynamic(this, &UW_MainMenu::HostNameOKClicked);
+	}
+
+	if (btnHostNameCancel)
+	{
+		btnHostNameCancel->OnClicked.AddDynamic(this, &UW_MainMenu::HostNameCancelClicked);
+	}
+	
 	if (btnJoinServerRefresh)
 	{
 		btnJoinServerRefresh->OnClicked.AddDynamic(this, &UW_MainMenu::UW_MainMenu::JoinButtonRefreshClicked);	
@@ -208,13 +224,56 @@ void UW_MainMenu::NativeDestruct()
 
 void UW_MainMenu::HostButtonClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Host Button Clicked"));
-
-	if (GameInstanceRef != nullptr)
+	if (WidgetSwitcher != nullptr)
 	{
-		btnHOST->SetIsEnabled(false);
-		btnJOIN->SetIsEnabled(false);
-		GameInstanceRef->Host();
+		WidgetSwitcher->SetActiveWidget(HostMenu);
+	}
+}
+
+void UW_MainMenu::OnHostTextChanged(const FText& InText)
+{
+	if (btnHostNameOK && tbHostNameEntry)
+	{
+		if (InText.IsEmpty())
+		{
+			btnHostNameOK->SetIsEnabled(false);
+		}
+		else
+		{
+			
+			if (!btnHostNameOK->GetIsEnabled())
+			{
+				btnHostNameOK->SetIsEnabled(true);
+			}
+		}
+	}
+}
+
+void UW_MainMenu::HostNameOKClicked()
+{
+	if (GameInstanceRef != nullptr  && tbHostNameEntry)
+	{
+		if (!tbHostNameEntry->GetText().IsEmpty())
+		{
+			GameInstanceRef->Host(tbHostNameEntry->GetText().ToString());
+		}
+		else
+		{
+			tbHostNameEntry->SetFocus();
+		}		
+	}
+}
+
+void UW_MainMenu::HostNameCancelClicked()
+{
+	if (WidgetSwitcher != nullptr)
+	{
+		if (!tbHostNameEntry->GetText().IsEmpty())
+		{
+			tbHostNameEntry->SetText(FText::FromString(""));
+		}
+
+		WidgetSwitcher->SetActiveWidget(MainMenu);
 	}
 }
 

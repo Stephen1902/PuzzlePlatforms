@@ -6,6 +6,7 @@
 #include "Engine/GameInstance.h"
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
+#include "W_MainMenu.h"
 #include "CPPGameInstance.generated.h"
 
 /**
@@ -30,7 +31,7 @@ public:
 	
 	// Function for a host server
 	UFUNCTION(Exec)
-	void Host();
+	void Host(FString HostNameIn);
 
 	// Function to join a host
 	UFUNCTION(Exec)
@@ -43,7 +44,7 @@ public:
 	UFUNCTION(Exec)
 	void QuitGame();
 
-	TArray<FOnlineSessionSearchResult> GetSessionResults();
+	//TArray<FSessionInfoStruct> GetSessionResults();
 
 	void FindGameSessions() const;
 
@@ -70,11 +71,11 @@ private:
 	// Function to call when join session is completed
 	void OnJoinSessionComplete(FName SessionIn, EOnJoinSessionCompleteResult::Type SessionCompleteResult);
 
-	void CreateSession();
+	void CreateSession() const;
 	
 	IOnlineSessionPtr SessionInterface;
 	TSharedPtr<FOnlineSessionSearch> SessionSearch;
-	TArray<FOnlineSessionSearchResult> SessionResults;
+	TArray<FString> SessionResults;
 	
-	
+	FString EnteredHostName = FString("");
 };

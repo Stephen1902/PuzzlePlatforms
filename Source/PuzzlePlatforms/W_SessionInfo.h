@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "W_MainMenu.h"
 #include "W_SessionInfo.generated.h"
 
 /**
@@ -18,8 +19,14 @@ protected:
 	virtual bool Initialize() override;
 	
 	UPROPERTY(meta=(BindWidget))
-	TObjectPtr<class UTextBlock> tbSessionInfo;
+	TObjectPtr<class UTextBlock> tbSessionID;
 
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<class UTextBlock> tbSessionHost;
+
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<class UTextBlock> tbSessionPlayers;
+	
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<class UButton> btnSelectSession;
 
@@ -36,9 +43,9 @@ protected:
 	FLinearColor SelectedColour;
 
 public:
-	void SetSessionInfoText(FText TextToDisplay) const;
-
 	void Setup(class UW_MainMenu* Parent, uint32 Index);
+
+	void SetSessionInfoText(FSessionInfoStruct SessionInfoIn) const;
 
 	void SetColourToDefault();
 

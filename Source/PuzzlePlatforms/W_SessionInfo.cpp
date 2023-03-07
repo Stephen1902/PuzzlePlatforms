@@ -2,8 +2,6 @@
 
 
 #include "W_SessionInfo.h"
-
-#include "W_MainMenu.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 
@@ -12,7 +10,7 @@ bool UW_SessionInfo::Initialize()
 	bool bSuccess = Super::Initialize();
 	if (bSuccess == false) { return false;}
 
-	if (btnSelectSession && tbSessionInfo)
+	if (btnSelectSession && tbSessionID &&tbSessionHost && tbSessionPlayers)
 	{
 		btnSelectSession->OnClicked.AddDynamic(this, &UW_SessionInfo::BtnSelectSessionClicked);
 		btnSelectSession->OnHovered.AddDynamic(this, &UW_SessionInfo::BtnSelectSessionHovered);
@@ -26,11 +24,14 @@ bool UW_SessionInfo::Initialize()
 	return bSuccess;
 }
 
-void UW_SessionInfo::SetSessionInfoText(const FText TextToDisplay) const
+void UW_SessionInfo::SetSessionInfoText(FSessionInfoStruct SessionInfoIn) const
 {
-	if (tbSessionInfo)
+	if (tbSessionID && tbSessionHost && tbSessionPlayers)
 	{
-		tbSessionInfo->SetText(TextToDisplay);
+		tbSessionID->SetText(FText::FromString(SessionInfoIn.SessionName));
+		tbSessionHost->SetText(FText::FromString(SessionInfoIn.HostUserName));
+		const FString PlayerDisplay = FString::FromInt(SessionInfoIn.CurrentPlayers) + "/" + FString::FromInt(SessionInfoIn.MaxPlayers);
+		tbSessionPlayers->SetText(FText::FromString(PlayerDisplay));
 	}
 }
 
@@ -42,9 +43,11 @@ void UW_SessionInfo::Setup(UW_MainMenu* Parent, uint32 Index)
 
 void UW_SessionInfo::SetColourToDefault()
 {
-	if (tbSessionInfo)
+	if (tbSessionID)
 	{
-		tbSessionInfo->SetColorAndOpacity(DefaultColour);
+		tbSessionID->SetColorAndOpacity(DefaultColour);
+		tbSessionHost->SetColorAndOpacity(DefaultColour);
+		tbSessionPlayers->SetColorAndOpacity(DefaultColour);
 		bIsSelectedSession = false;
 	}
 }
@@ -56,25 +59,31 @@ void UW_SessionInfo::BtnSelectSessionClicked()
 
 	MainMenuRef->SelectSessionIndex(CurrentSessionInfoIndex);
 
-	if (tbSessionInfo)
+	if (tbSessionID)
 	{
-		tbSessionInfo->SetColorAndOpacity(SelectedColour);
+		tbSessionID->SetColorAndOpacity(SelectedColour);
+		tbSessionHost->SetColorAndOpacity(SelectedColour);
+		tbSessionPlayers->SetColorAndOpacity(SelectedColour);
 		bIsSelectedSession = true;
 	}
 }
 
 void UW_SessionInfo::BtnSelectSessionHovered()
 {
-	if (tbSessionInfo && !bIsSelectedSession)
+	if (tbSessionID && !bIsSelectedSession)
 	{
-		tbSessionInfo->SetColorAndOpacity(HoveredColour);
+		tbSessionID->SetColorAndOpacity(HoveredColour);
+		tbSessionHost->SetColorAndOpacity(HoveredColour);
+		tbSessionPlayers->SetColorAndOpacity(HoveredColour);
 	}
 }
 
 void UW_SessionInfo::BtnSelectSessionUnhovered()
 {
-	if (tbSessionInfo && !bIsSelectedSession)
+	if (tbSessionID && !bIsSelectedSession)
 	{
-		tbSessionInfo->SetColorAndOpacity(DefaultColour);
+		tbSessionID->SetColorAndOpacity(DefaultColour);
+		tbSessionHost->SetColorAndOpacity(DefaultColour);
+		tbSessionPlayers->SetColorAndOpacity(DefaultColour);
 	}
 }

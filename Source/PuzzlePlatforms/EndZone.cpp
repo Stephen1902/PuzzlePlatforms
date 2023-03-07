@@ -4,10 +4,7 @@
 #include "EndZone.h"
 #include "PuzzlePlatformsCharacter.h"
 #include "Components/BoxComponent.h"
-#include "EnvironmentQuery/EnvQueryTypes.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/PawnMovementComponent.h"
-#include "GeometryCollection/GeometryCollectionSimulationCoreTypes.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
