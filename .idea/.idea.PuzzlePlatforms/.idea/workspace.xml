@@ -5,17 +5,8 @@
     <projectFile>Intermediate/ProjectFiles/UE5.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Maps/DefaultMap.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Maps/MainMenu.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Maps/TransitionLevel.umap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.h" afterDir="false" />
+    <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="Added new Lobby level and created custom game mode for it.  Ensured seamless travel is implemented in it.&#10;&#10;Moved all maps to one location and corrected .ini files to ensure these can still be found and packaged.&#10;&#10;Created new level for a transition map with it's own widget class to display that the level is loaded.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/Lobby.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Lobby.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdPerson/Maps/DefaultMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdPerson/Maps/DefaultMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdPerson/Maps/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdPerson/Maps/MainMenu.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +19,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://G:/Projects/Learning/GameDevTV/Multiplayer/S03_SteamMultiplayer/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.h" root0="FORCE_HIGHLIGHTING" />
@@ -243,7 +235,7 @@
       <workItem from="1678022229728" duration="269000" />
       <workItem from="1678136683934" duration="1672000" />
       <workItem from="1678205975308" duration="7864000" />
-      <workItem from="1678532792776" duration="3862000" />
+      <workItem from="1678532792776" duration="5871000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -315,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678221737346</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added new Lobby level and created custom game mode for it.  Ensured seamless travel is implemented in it.&#10;&#10;Moved all maps to one location and corrected .ini files to ensure these can still be found and packaged.&#10;&#10;Created new level for a transition map with it's own widget class to display that the level is loaded.">
+      <created>1678542235317</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678542235317</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -342,7 +341,8 @@
     <MESSAGE value="Added Steam Online Subsystem and relevant code" />
     <MESSAGE value="Added functions to change colour when the buttons on the session info widgets are hovered, un-hovered and clicked on, adding checks so that if the same button is pressed, it will not repeat the code." />
     <MESSAGE value="Added new features to allow the host to name their host and for the player joining to see the host name.&#10;&#10;Updated Session info so that all items in the row colour correctly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new features to allow the host to name their host and for the player joining to see the host name.&#10;&#10;Updated Session info so that all items in the row colour correctly." />
+    <MESSAGE value="Added new Lobby level and created custom game mode for it.  Ensured seamless travel is implemented in it.&#10;&#10;Moved all maps to one location and corrected .ini files to ensure these can still be found and packaged.&#10;&#10;Created new level for a transition map with it's own widget class to display that the level is loaded." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new Lobby level and created custom game mode for it.  Ensured seamless travel is implemented in it.&#10;&#10;Moved all maps to one location and corrected .ini files to ensure these can still be found and packaged.&#10;&#10;Created new level for a transition map with it's own widget class to display that the level is loaded." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

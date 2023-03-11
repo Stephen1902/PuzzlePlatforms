@@ -7,7 +7,6 @@
 #include "PauseMenu.h"
 #include "OnlineSubsystem.h"
 
-const static FName SESSION_NAME = TEXT("My Session");
 const static FName SERVER_SESSION_NAME = TEXT("ServerName");
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
@@ -95,10 +94,10 @@ void UCPPGameInstance::Host(FString HostNameIn)
 {
 	if (SessionInterface.IsValid())
 	{
-		const FNamedOnlineSession* SessionNameInUse = SessionInterface->GetNamedSession(SESSION_NAME);
+		const FNamedOnlineSession* SessionNameInUse = SessionInterface->GetNamedSession(NAME_GameSession);
 		if (SessionNameInUse != nullptr)
 		{
-			SessionInterface->DestroySession(SESSION_NAME);
+			SessionInterface->DestroySession(NAME_GameSession);
 		}
 
 		EnteredHostName = HostNameIn;
@@ -114,7 +113,7 @@ void UCPPGameInstance::Join(uint32 SessionRowIndex)
 	// Check there is a valid Player Controller and a valid session interface and valid session search
 	if (!PC || !SessionInterface.IsValid() || !SessionSearch.IsValid()) { return; }
 
-	SessionInterface->JoinSession(0, SESSION_NAME, SessionSearch->SearchResults[SessionRowIndex]);
+	SessionInterface->JoinSession(0, NAME_GameSession, SessionSearch->SearchResults[SessionRowIndex]);
 }
 
 void UCPPGameInstance::LeaveJoin()
@@ -233,13 +232,13 @@ void UCPPGameInstance::CreateSession() const
 			SessionSettings.bIsLANMatch = false;
 		}
 		
-		SessionSettings.NumPublicConnections = 2;
+		SessionSettings.NumPublicConnections = 3;
 		SessionSettings.bShouldAdvertise = true;
 		SessionSettings.bUsesPresence = true;
 		SessionSettings.bUseLobbiesIfAvailable = true;
 		SessionSettings.Set(SERVER_SESSION_NAME, EnteredHostName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 		
-		SessionInterface->CreateSession(0, SESSION_NAME, SessionSettings);
+		SessionInterface->CreateSession(0, NAME_GameSession, SessionSettings);
 
 		GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Green, *EnteredHostName);
 	}
