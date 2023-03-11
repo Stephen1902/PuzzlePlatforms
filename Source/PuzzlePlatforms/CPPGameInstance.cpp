@@ -124,7 +124,7 @@ void UCPPGameInstance::LeaveJoin()
 	// Check there is a valid Player Controller
 	if (!PC) { return; }
 
-	const FString MainMenuLocation = "/Game/ThirdPerson/Maps/MainMenu.MainMenu";
+	const FString MainMenuLocation = "/Game/Maps/MainMenu.MainMenu";
 	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Red, FString::Printf(TEXT("Joining %s"), *MainMenuLocation));
 
 	PC->ClientTravel(MainMenuLocation, TRAVEL_Absolute);
@@ -152,7 +152,7 @@ void UCPPGameInstance::OnSessionCreated(FName SessionIn, bool bSessionCreatedSuc
 	// Check we got a valid world pointer
 	if (!World) { return; }
 
-	World->ServerTravel("/Game/ThirdPerson/Maps/DefaultMap?listen");
+	World->ServerTravel("/Game/Maps/Lobby?Listen");
 }
 
 void UCPPGameInstance::OnSessionDestroyed(FName SessionIn, bool bSessionDestroyedSuccessfully)
