@@ -1,6 +1,5 @@
 // Copyright 2023 DME Games
 
-
 #include "CPPGameInstance.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -8,6 +7,7 @@
 #include "OnlineSubsystem.h"
 
 const static FName SERVER_SESSION_NAME = TEXT("ServerName");
+const static FString MAIN_MENU = "/Game/Maps/MainMenu.MainMenu";
 
 UCPPGameInstance::UCPPGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -53,6 +53,10 @@ void UCPPGameInstance::Init()
 		UE_LOG(LogTemp, Warning, TEXT("Online susbystem is null"));
 	}
 
+	if (GEngine)
+	{
+		GetEngine()->OnNetworkFailure().AddUObject(this, &UCPPGameInstance::OnNetworkFailure);
+	}
 }
 
 void UCPPGameInstance::DisplayMainMenu()
@@ -122,11 +126,8 @@ void UCPPGameInstance::LeaveJoin()
 
 	// Check there is a valid Player Controller
 	if (!PC) { return; }
-
-	const FString MainMenuLocation = "/Game/Maps/MainMenu.MainMenu";
-	GEngine->AddOnScreenDebugMessage(0, 2.0f, FColor::Red, FString::Printf(TEXT("Joining %s"), *MainMenuLocation));
-
-	PC->ClientTravel(MainMenuLocation, TRAVEL_Absolute);
+	
+	PC->ClientTravel(MAIN_MENU, TRAVEL_Absolute);
 }
 
 void UCPPGameInstance::QuitGame()
@@ -217,6 +218,11 @@ void UCPPGameInstance::OnJoinSessionComplete(FName SessionIn, EOnJoinSessionComp
 	}
 }
 
+void UCPPGameInstance::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorMessage)
+{
+	LeaveJoin();
+}
+
 void UCPPGameInstance::CreateSession() const
 {
 	if (SessionInterface.IsValid() && EnteredHostName.Len() > 0)
@@ -262,5 +268,13 @@ void UCPPGameInstance::FindGameSessions() const
 		SessionSearch->MaxSearchResults = 100;
 		SessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
 		SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
+	}
+}
+
+void UCPPGameInstance::StartSession()
+{
+	if (SessionInterface.IsValid())
+	{
+		SessionInterface->StartSession(NAME_GameSession);
 	}
 }

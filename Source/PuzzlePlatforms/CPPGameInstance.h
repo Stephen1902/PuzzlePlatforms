@@ -48,6 +48,8 @@ public:
 
 	void FindGameSessions() const;
 
+	void StartSession();
+
 private:
 	TSubclassOf<UUserWidget> MenuWidget;
 
@@ -70,6 +72,10 @@ private:
 
 	// Function to call when join session is completed
 	void OnJoinSessionComplete(FName SessionIn, EOnJoinSessionCompleteResult::Type SessionCompleteResult);
+
+	// Function to call if the server quits unexpectedly
+	void OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorMessage);
+	
 
 	void CreateSession() const;
 	

@@ -22,5 +22,9 @@ protected:
 	virtual void Logout(AController* Exiting) override;
 
 private:
+	void TravelToGameLevel();
+	
 	uint32 NumberOfPlayers = 0;
+
+	FTimerHandle TravelTimerHandle;
 };
