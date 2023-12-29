@@ -9,7 +9,8 @@
 Content/Characters/
 Content/LevelPrototyping/
 Content/ThirdPerson/Input/
-
+Content/FirstPersonArms/
+Content/FPWeapon/
 
 # Visual Studio 2015 user specific files
 .vs/

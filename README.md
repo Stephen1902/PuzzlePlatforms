@@ -1,3 +1,5 @@
-# PuzzlePlatforms
+# Sci-Fi Escape
 
-Created based on the GameDevTV Unreal Engine multiplayer course.  All rights reserved.
+Co-Op Multiplayer escape game, based in a Sci-Fi atmostphere.
+
+Copyright 2023 DME Games.  All rights reserved.

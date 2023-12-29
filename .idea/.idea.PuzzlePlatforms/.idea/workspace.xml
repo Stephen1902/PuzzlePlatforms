@@ -4,13 +4,21 @@
     <projectFile>Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj</projectFile>
     <projectFile>Intermediate/ProjectFiles/UE5.vcxproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cff2271b-e7b3-4616-8ceb-29f31eca2705" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PuzzlePlatforms.sln.DotSettings.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SteamMultiplayer.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzlePlatforms/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vsconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.vsconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PuzzlePlatforms.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/PuzzlePlatforms.uproject" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/LobbyGameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/PauseMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzlePlatforms/W_MainMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startserver.bat" beforeDir="false" afterPath="$PROJECT_DIR$/startserver.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +27,10 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms.Target.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/CPPGameInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/EndZone.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -29,6 +39,7 @@
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/MovingPlatform.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/PlatformTrigger.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/PlatformTrigger.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PuzzlePlatforms/PuzzlePlatforms.Build.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,6 +47,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2KxSLLSf13UI5gyhjIG5TxwpCH9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,15 +61,18 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;C++ Project.PuzzlePlatforms.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\nicho\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\nicho\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\nicho\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\nicho\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
       &quot;C:\\Users\\nicho\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
@@ -66,6 +83,7 @@
         <option name="CONFIGURATION" value="DebugGame Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -76,6 +94,7 @@
         <option name="CONFIGURATION" value="Shipping" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -86,6 +105,7 @@
         <option name="CONFIGURATION" value="DebugGame" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -96,6 +116,7 @@
         <option name="CONFIGURATION" value="Development Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -106,6 +127,7 @@
         <option name="CONFIGURATION" value="Development" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/PuzzlePlatforms.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -122,6 +144,7 @@
         <option name="CONFIGURATION" value="DebugGame Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -132,6 +155,7 @@
         <option name="CONFIGURATION" value="Shipping" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -142,6 +166,7 @@
         <option name="CONFIGURATION" value="DebugGame" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -152,6 +177,7 @@
         <option name="CONFIGURATION" value="Development Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -162,6 +188,7 @@
         <option name="CONFIGURATION" value="Development" />
         <option name="PLATFORM" value="Win64" />
         <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
         <option name="EXE_PATH" value="$(LocalDebuggerCommand)" />
         <option name="PROGRAM_PARAMETERS" value="$(LocalDebuggerCommandArguments)" />
         <option name="WORKING_DIRECTORY" value="$(LocalDebuggerWorkingDirectory)" />
@@ -238,7 +265,19 @@
       <workItem from="1678136683934" duration="1672000" />
       <workItem from="1678205975308" duration="7864000" />
       <workItem from="1678532792776" duration="6303000" />
-      <workItem from="1678558463647" duration="2833000" />
+      <workItem from="1678558463647" duration="3008000" />
+      <workItem from="1678627320848" duration="642000" />
+      <workItem from="1678630264807" duration="37000" />
+      <workItem from="1678741412372" duration="239000" />
+      <workItem from="1678815328783" duration="167000" />
+      <workItem from="1680361497716" duration="665000" />
+      <workItem from="1682156968463" duration="1222000" />
+      <workItem from="1702851415125" duration="108000" />
+      <workItem from="1702919179519" duration="82000" />
+      <workItem from="1703017470448" duration="654000" />
+      <workItem from="1703101299925" duration="1708000" />
+      <workItem from="1703417005859" duration="2982000" />
+      <workItem from="1703671581195" duration="4419000" />
     </task>
     <task id="LOCAL-00001" summary="Update after creating online repository.">
       <created>1675607235685</created>
@@ -324,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678544954637</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added new functionality to automatically move to the level to player after the minimum number of players has been reached.&#10;&#10;Added new functionality to send a client back to the main menu if the server player leaves.">
+      <created>1678562885663</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678562885663</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,7 +399,8 @@
     <MESSAGE value="Added new features to allow the host to name their host and for the player joining to see the host name.&#10;&#10;Updated Session info so that all items in the row colour correctly." />
     <MESSAGE value="Added new Lobby level and created custom game mode for it.  Ensured seamless travel is implemented in it.&#10;&#10;Moved all maps to one location and corrected .ini files to ensure these can still be found and packaged.&#10;&#10;Created new level for a transition map with it's own widget class to display that the level is loaded." />
     <MESSAGE value="Changed my SESSION_NAME to NAME_GameSession which is the Unreal default, allowing for the correct updating of the number of players in the server list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed my SESSION_NAME to NAME_GameSession which is the Unreal default, allowing for the correct updating of the number of players in the server list." />
+    <MESSAGE value="Added new functionality to automatically move to the level to player after the minimum number of players has been reached.&#10;&#10;Added new functionality to send a client back to the main menu if the server player leaves." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new functionality to automatically move to the level to player after the minimum number of players has been reached.&#10;&#10;Added new functionality to send a client back to the main menu if the server player leaves." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

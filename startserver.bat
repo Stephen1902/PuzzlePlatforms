@@ -2,9 +2,9 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 REM =======MAKE SURE TO ADJUST THESE PARAMETERS TO YOUR BUILD=======
-set unrealPath="G:\Unreal Engine\UE_5.1\Engine\Binaries\Win64\UnrealEditor.exe"
+set unrealPath="G:\Unreal Engine\UE_5.2\Engine\Binaries\Win64\UnrealEditor.exe"
 
-set myProject="G:\Projects\Learning\GameDevTV\Multiplayer\PuzzlePlatforms\PuzzlePlatforms.uproject"
+set myProject="G:\Projects\Learning\GameDevTV\Multiplayer\S03_SteamMultiplayer\PuzzlePlatforms.uproject"
 
 set map=/Game/ThirdPerson/Maps/DefaultMap
 
