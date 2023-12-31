@@ -4,7 +4,7 @@
 #include "InteacteractiveActorBase.h"
 
 // Sets default values
-AInteacteractiveActorBase::AInteacteractiveActorBase()
+AInteractiveActorBase::AInteractiveActorBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -12,16 +12,21 @@ AInteacteractiveActorBase::AInteacteractiveActorBase()
 }
 
 // Called when the game starts or when spawned
-void AInteacteractiveActorBase::BeginPlay()
+void AInteractiveActorBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void AInteacteractiveActorBase::Tick(float DeltaTime)
+void AInteractiveActorBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AInteractiveActorBase::Interact()
+{
+	InteractBP();
 }
 

@@ -59,7 +59,7 @@ private:
 	TSubclassOf<UUserWidget> PauseMenuWidget;
 	
 	UPROPERTY()
-	TObjectPtr<class UPauseMenu> PauseMenuRef;
+	TObjectPtr<class UW_PauseMenu> PauseMenuRef;
 
 	// Function to call when an online session has successfully been created
 	void OnSessionCreated(FName SessionIn, bool bSessionCreatedSuccessfully);

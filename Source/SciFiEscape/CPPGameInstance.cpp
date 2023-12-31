@@ -3,11 +3,9 @@
 #include "CPPGameInstance.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "PauseMenu.h"
+#include "W_PauseMenu.h"
 #include "OnlineSubsystem.h"
-#include "SciFiEscapeCharacter.h"
 #include "Online/OnlineSessionNames.h"
-#include "WorldPartition/ContentBundle/ContentBundleLog.h"
 
 const static FName SERVER_SESSION_NAME = TEXT("ServerName");
 const static FString MAIN_MENU = "/Game/Maps/MainMenu.MainMenu";
@@ -83,7 +81,7 @@ void UCPPGameInstance::OpenPauseMenu()
 	// Check whether the pause menu has been created before
 	if (PauseMenuRef == nullptr)
 	{
-		PauseMenuRef = CreateWidget<UPauseMenu>(this, PauseMenuWidget);
+		PauseMenuRef = CreateWidget<UW_PauseMenu>(this, PauseMenuWidget);
 	}
 	
 	// Get the world and check it exists

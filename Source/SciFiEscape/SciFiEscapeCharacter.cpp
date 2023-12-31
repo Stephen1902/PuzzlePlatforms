@@ -9,9 +9,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "Kismet/GameplayStatics.h"
 #include "CPPGameInstance.h"
 #include "InteacteractiveActorBase.h"
+#include "W_PlayerWidget.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ASciFiEscapeCharacter
@@ -78,6 +78,12 @@ void ASciFiEscapeCharacter::SetGameIsRunning()
 	FollowCamera->Deactivate();
 	FirstPersonCamera->SetActive(true);
 	GetMesh()->SetOwnerNoSee(true);
+	
+	if (PlayerWidget)
+	{
+		PlayerWidgetRef = CreateWidget<UW_PlayerWidget>(GetWorld(), PlayerWidget);
+		PlayerWidgetRef->AddToViewport();
+	}
 }
 
 
@@ -159,6 +165,9 @@ void ASciFiEscapeCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 		// Open Pause Menu
 		EnhancedInputComponent->BindAction(PauseMenuAction, ETriggerEvent::Started, this, &ASciFiEscapeCharacter::OpenPauseMenu);
+
+		// Interact
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ASciFiEscapeCharacter::TryToInteract);
 	}
 }
 
@@ -216,14 +225,34 @@ void ASciFiEscapeCharacter::CheckForInteractive()
 	DrawDebugLine(GetWorld(), StartLoc, EndLoc, FColor::Green, true);
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLoc, EndLoc, ECC_GameTraceChannel1, QueryParams))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit something interactive"));
-		CurrentInteractive = Cast<AInteacteractiveActorBase>(HitResult.GetActor());
+		AInteractiveActorBase* InteractiveHit = Cast<AInteractiveActorBase>(HitResult.GetActor()); 
+		if (InteractiveHit != CurrentInteractive)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Hit something interactive"));
+			CurrentInteractive = InteractiveHit;
+			if (PlayerWidgetRef)
+			{
+				PlayerWidgetRef->InteractiveItemFound();
+			}
+		}
 	}
 	else
 	{
 		CurrentInteractive = nullptr;
+		if (PlayerWidgetRef)
+		{
+			PlayerWidgetRef->InteractiveItemLost();
+		}
 	}
 	
+}
+
+void ASciFiEscapeCharacter::TryToInteract()
+{
+	if (CurrentInteractive != nullptr)
+	{
+		CurrentInteractive->Interact();
+	}
 }
 
 

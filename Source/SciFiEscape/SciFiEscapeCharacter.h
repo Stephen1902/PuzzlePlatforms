@@ -43,6 +43,10 @@ class ASciFiEscapeCharacter : public ACharacter
 	/** Pause Menu Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* PauseMenuAction;
+
+	/** Interact Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
 public:
 	ASciFiEscapeCharacter();
 
@@ -64,6 +68,9 @@ protected:
 	// Delay between the player checking for an interactive item.  Set to 0.f for every tick.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interaction")
 	float TimeBetweenInteractionCheck = 0.2f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interaction")
+	TSubclassOf<class UW_PlayerWidget> PlayerWidget;
 	
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
@@ -89,6 +96,9 @@ public:
 private:
 	void OpenPauseMenu();
 	void GetGameInstance();
+
+	UPROPERTY()
+	class UW_PlayerWidget* PlayerWidgetRef;
 	
 	UPROPERTY()
 	class UCPPGameInstance* GameInstanceRef;
@@ -96,7 +106,8 @@ private:
 	float TimeSinceLastInteraction = 0.f;
 	void CheckForInteractive();
 	UPROPERTY()
-	class AInteacteractiveActorBase* CurrentInteractive;
+	class AInteractiveActorBase* CurrentInteractive;
+	void TryToInteract();
 
 	bool bGameIsRunning = false;
 };
