@@ -225,15 +225,17 @@ void ASciFiEscapeCharacter::CheckForInteractive()
 	DrawDebugLine(GetWorld(), StartLoc, EndLoc, FColor::Green, true);
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLoc, EndLoc, ECC_GameTraceChannel1, QueryParams))
 	{
-		AInteractiveActorBase* InteractiveHit = Cast<AInteractiveActorBase>(HitResult.GetActor()); 
+		AInteractiveActorBase* InteractiveHit = Cast<AInteractiveActorBase>(HitResult.GetActor());
+
+		// Show the key action widget on screen, if it's not already there
+		if (PlayerWidgetRef && CurrentInteractive == nullptr)
+		{
+			PlayerWidgetRef->InteractiveItemFound();
+		}
+		
 		if (InteractiveHit != CurrentInteractive)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Hit something interactive"));
 			CurrentInteractive = InteractiveHit;
-			if (PlayerWidgetRef)
-			{
-				PlayerWidgetRef->InteractiveItemFound();
-			}
 		}
 	}
 	else
@@ -244,7 +246,6 @@ void ASciFiEscapeCharacter::CheckForInteractive()
 			PlayerWidgetRef->InteractiveItemLost();
 		}
 	}
-	
 }
 
 void ASciFiEscapeCharacter::TryToInteract()

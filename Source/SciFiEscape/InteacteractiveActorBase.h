@@ -19,6 +19,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Set Up")
+	USceneComponent* RootComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Set Up")
+	UStaticMeshComponent* MeshComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Set Up")
+	bool bSingleUseOnly;
+	
 	// Blueprint function for when this actor is interacted with
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractBP();
@@ -28,7 +37,8 @@ public:
 
 	// Called when the player tries to interact with this actor
 	void Interact();
-	
-	
+
+private:
+	bool bHasExpired;
 
 };
