@@ -26,17 +26,27 @@ protected:
 	UStaticMeshComponent* MeshComp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Set Up")
+	FText InteractiveInstructionText;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Set Up")
 	bool bSingleUseOnly;
 	
 	// Blueprint function for when this actor is interacted with
 	UFUNCTION(BlueprintImplementableEvent)
 	void InteractBP();
+
+	// Called by the Blueprint when the required action is complete
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void BPSuccessful();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called when the player tries to interact with this actor
 	void Interact();
+
+	// Called to populate the TextBoxInteractInstructions Text Box on the Player Widget
+	FText GetInteractiveInstructionText() const { return InteractiveInstructionText; }
 
 private:
 	bool bHasExpired;

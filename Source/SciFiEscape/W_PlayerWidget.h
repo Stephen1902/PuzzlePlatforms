@@ -18,10 +18,13 @@ protected:
 	virtual bool Initialize() override;
 	
 	UPROPERTY(meta=(BindWidget))
-	class UImage* ImageInteract;
+	TObjectPtr<class UImage> ImageInteract;
+
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<class UTextBlock> TextBoxInteractInstructions;
 
 public:
-	void InteractiveItemFound() const;
+	void InteractiveItemFound(const class AInteractiveActorBase* InteractiveActor) const;
 	void InteractiveItemLost() const;
 	
 };

@@ -14,9 +14,10 @@ AInteractiveActorBase::AInteractiveActorBase()
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Comp"));
 	MeshComp->SetupAttachment(RootComp);
 	MeshComp->SetMobility(EComponentMobility::Movable);
-	MeshComp->SetCollisionResponseToChannel(ECC_EngineTraceChannel1, ECR_Overlap);
+	MeshComp->SetCollisionResponseToChannel(ECC_EngineTraceChannel1, ECR_Block);
 
 	bSingleUseOnly = true;
+	InteractiveInstructionText = FText::FromString("Interactive Item");
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +31,10 @@ void AInteractiveActorBase::BeginPlay()
 		SetReplicates(true);
 		SetReplicateMovement(true);
 	}
+}
+
+void AInteractiveActorBase::BPSuccessful()
+{
 	
 }
 

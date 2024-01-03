@@ -228,9 +228,9 @@ void ASciFiEscapeCharacter::CheckForInteractive()
 		AInteractiveActorBase* InteractiveHit = Cast<AInteractiveActorBase>(HitResult.GetActor());
 
 		// Show the key action widget on screen, if it's not already there
-		if (PlayerWidgetRef && CurrentInteractive == nullptr)
+		if (PlayerWidgetRef)
 		{
-			PlayerWidgetRef->InteractiveItemFound();
+			PlayerWidgetRef->InteractiveItemFound(InteractiveHit);
 		}
 		
 		if (InteractiveHit != CurrentInteractive)
