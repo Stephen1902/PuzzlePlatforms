@@ -12,6 +12,7 @@
 #include "CPPGameInstance.h"
 #include "InteacteractiveActorBase.h"
 #include "W_PlayerWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ASciFiEscapeCharacter
@@ -78,6 +79,7 @@ void ASciFiEscapeCharacter::SetGameIsRunning()
 	FollowCamera->Deactivate();
 	FirstPersonCamera->SetActive(true);
 	GetMesh()->SetOwnerNoSee(true);
+	GetMesh()->SetCastHiddenShadow(true);
 	
 	if (PlayerWidget)
 	{
@@ -222,7 +224,6 @@ void ASciFiEscapeCharacter::CheckForInteractive()
 	const FVector StartLoc = EyesLoc;
 	const FVector EndLoc = StartLoc + (EyesRot.Vector() * InteractiveCheckLength);
 	
-	DrawDebugLine(GetWorld(), StartLoc, EndLoc, FColor::Green, true);
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLoc, EndLoc, ECC_GameTraceChannel1, QueryParams))
 	{
 		AInteractiveActorBase* InteractiveHit = Cast<AInteractiveActorBase>(HitResult.GetActor());

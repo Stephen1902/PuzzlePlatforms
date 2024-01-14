@@ -19,10 +19,10 @@ void ALobbyGameMode::PostLogin(APlayerController* NewPlayer)
 
 	++NumberOfPlayers;
 
-	if (NumberOfPlayers >= 2)
+	if (NumberOfPlayers >= 1)// For testing purposes only 2)
 	{
 		// Travel to the game lobby, after a delay
-		GetWorldTimerManager().SetTimer(TravelTimerHandle, this, &ALobbyGameMode::TravelToGameLevel, 10.f, false);
+		GetWorldTimerManager().SetTimer(TravelTimerHandle, this, &ALobbyGameMode::TravelToGameLevel, 1.f, false);
 	}
 }
 
